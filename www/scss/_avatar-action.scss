@@ -1,0 +1,71 @@
+// Componente Avatar Action (Botones de acción de avatar) con BEM
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.avatar-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: $avatar-size-sm;
+    min-height: $avatar-size-sm;
+    padding: $espaciado-xs;
+    background-color: transparent;
+    border: none;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: $transicion;
+
+    // Tablet
+    @include respond-to(tablet) {
+        min-width: $avatar-size-md;
+        min-height: $avatar-size-md;
+        padding: $espaciado-sm;
+    }
+
+    // Icon
+    svg {
+        width: 24px;
+        height: 24px;
+        stroke: $rosa-principal;
+        transition: $transicion;
+
+        // Tablet
+        @include respond-to(tablet) {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    // Hover state
+    &:hover {
+        background-color: $rosa-secundario;
+
+        svg {
+            stroke: $rosa-acento;
+        }
+    }
+
+    // Focus visible para accesibilidad
+    &:focus-visible {
+        outline: 3px solid $rosa-principal;
+        outline-offset: 2px;
+    }
+
+    // Active state
+    &:active {
+        background-color: $rosa-acento;
+
+        svg {
+            stroke: $blanco;
+        }
+    }
+
+    // Soporte para motion reducido
+    @media (prefers-reduced-motion: reduce) {
+        transition: none;
+
+        svg {
+            transition: none;
+        }
+    }
+}

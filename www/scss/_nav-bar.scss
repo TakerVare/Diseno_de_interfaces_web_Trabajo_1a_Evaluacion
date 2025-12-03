@@ -1,0 +1,106 @@
+// Componente Navigation Bar con BEM
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $blanco;
+    border-top: 1px solid $gris-medio;
+    z-index: 100;
+
+    // List
+    &__list {
+        @include flex-center;
+        justify-content: space-around;
+        height: $nav-height-mobile;
+        max-width: 393px;
+        margin: 0 auto;
+    }
+
+    // Item
+    &__item {
+        flex: 1;
+        @include flex-center;
+
+        // Modificador active
+        &--active {
+            .nav-bar__icon {
+                color: $rosa-principal;
+                stroke: $rosa-principal;
+            }
+        }
+    }
+
+    // Link
+    &__link {
+        @include flex-center;
+        padding: $espaciado-sm;
+        transition: $transicion;
+        cursor: pointer;
+
+        &:hover {
+            .nav-bar__icon {
+                color: $rosa-acento;
+                stroke: $rosa-acento;
+                transform: scale(1.1);
+            }
+        }
+
+        &:active {
+            .nav-bar__icon {
+                transform: scale(0.95);
+            }
+        }
+    }
+
+    // Icon
+    &__icon {
+        width: 24px;
+        height: 24px;
+        color: $rosa-principal;
+        stroke: $rosa-principal;
+        stroke-width: 1.5;
+        fill: none;
+        transition: $transicion;
+    }
+
+    // Tablet y Desktop
+    @include respond-to(tablet) {
+        // Mantener fixed
+        // position: relative; 
+        // border-top: none;
+        // border-bottom: 1px solid $gris-medio;
+        background-color: $blanco;
+
+        &__list {
+            height: $nav-height-tablet;
+            max-width: 100%;
+            justify-content: center;
+            gap: $espaciado-xxl;
+        }
+
+        &__item {
+            flex: 0 0 auto;
+        }
+
+        &__icon {
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    @include respond-to(desktop) {
+        &__list {
+            height: $nav-height-desktop;
+            gap: $espaciado-xxl * 1.5;
+        }
+
+        &__icon {
+            width: 32px;
+            height: 32px;
+        }
+    }
+}

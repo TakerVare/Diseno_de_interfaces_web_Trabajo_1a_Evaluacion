@@ -1,0 +1,62 @@
+// Estilos base y reset
+@use 'variables' as *;
+@use 'mixins' as *;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: $font-family;
+    line-height: $line-height;
+    color: $negro;
+    background-color: $blanco;
+}
+
+// Page container
+.page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+// Main content
+.main {
+    flex: 1;
+    // Espacio para el nav-bar sticky + margen extra
+    padding-bottom: calc(#{$nav-height-mobile} + #{$espaciado-md});
+
+    @include respond-to(tablet) {
+        padding-bottom: calc(#{$nav-height-tablet} + #{$espaciado-lg});
+    }
+
+    @include respond-to(desktop) {
+        padding-bottom: calc(#{$nav-height-desktop} + #{$espaciado-lg});
+    }
+}
+
+// Imágenes responsive
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+// Links
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+// Listas
+ul {
+    list-style: none;
+}
